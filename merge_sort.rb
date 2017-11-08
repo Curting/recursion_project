@@ -5,11 +5,11 @@ def merge_sort(ary)
     result = Array.new
     half_length = (ary.length / 2.0).floor
 
-    # Sort left half of ary.length
+    # Sort left half of ary
     left_half = ary[0..half_length - 1]
     left_half_s = merge_sort(left_half)
 
-    # Sort right half of ary.length
+    # Sort right half of ary
     right_half = ary[half_length..-1]
     right_half_s = merge_sort(right_half)
 
