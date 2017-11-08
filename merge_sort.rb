@@ -2,8 +2,6 @@ def merge_sort(ary)
   # BASE CASE
   return ary if ary.length < 2
 
-  result = Array.new
-
   # DIVIDE
   half_length = (ary.length / 2.0).floor
   left_half = ary[0...half_length]
@@ -14,6 +12,8 @@ def merge_sort(ary)
   right_half_s = merge_sort(right_half)
 
   # MERGE sorted halves
+  result = Array.new
+  
   ary.length.times do
     if left_half_s.empty?
       result << right_half_s.delete_at(0)
