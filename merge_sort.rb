@@ -1,31 +1,30 @@
 def merge_sort(ary)
-  if ary.length < 2
-    ary
-  else
-    result = Array.new
-    half_length = (ary.length / 2.0).floor
+  # BASE CASE
+  return ary if ary.length < 2
 
-    # Sort left half of ary
-    left_half = ary[0..half_length - 1]
-    left_half_s = merge_sort(left_half)
+  result = Array.new
 
-    # Sort right half of ary
-    right_half = ary[half_length..-1]
-    right_half_s = merge_sort(right_half)
+  # DIVIDE
+  half_length = (ary.length / 2.0).floor
+  left_half = ary[0...half_length]
+  right_half = ary[half_length..-1]
 
-    # Merge sorted halves
-    ary.length.times do
-      if left_half_s.empty?
-        result << right_half_s.delete_at(0)
-      elsif right_half_s.empty?
-        result << left_half_s.delete_at(0)
-      else
-        result << (left_half_s.first < right_half_s.first ? left_half_s.delete_at(0) : right_half_s.delete_at(0))
-      end
+  # CONQUER
+  left_half_s = merge_sort(left_half)
+  right_half_s = merge_sort(right_half)
+
+  # MERGE sorted halves
+  ary.length.times do
+    if left_half_s.empty?
+      result << right_half_s.delete_at(0)
+    elsif right_half_s.empty?
+      result << left_half_s.delete_at(0)
+    else
+      result << (left_half_s.first < right_half_s.first ? left_half_s.delete_at(0) : right_half_s.delete_at(0))
     end
-
-    result
   end
+
+  result
 end
 
 puts merge_sort([6, 12, 4, 103, 43, 10, 54, 18, 55, 22]).inspect 
